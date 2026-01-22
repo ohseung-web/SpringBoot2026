@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+		<h2>📘 도서 등록</h2>
+		
+		<form action="/book/add" method="post">
+		    ISBN: <input type="text" name="isbn"><br><br>
+		    제목: <input type="text" name="title"><br><br>
+		    저자: <input type="text" name="author"><br><br>
+		    <button type="submit">등록</button>
+		</form>
+		
+		<p th:text="${message}"></p>
+		
+		<a href="/book/list">📋 도서 목록</a>
+</body>
+</html>

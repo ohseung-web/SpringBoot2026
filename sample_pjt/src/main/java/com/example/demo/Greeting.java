@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller // Controller이라는 Bean객체가 생성되도록 어노테이션 처리
 public class Greeting {
 
-    
-	
 	//메소드
 	@GetMapping("/") // http://localhost:8090/ =>홈페이지
 	public String greet() {

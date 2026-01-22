@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+		<h2>📚 도서 목록</h2>
+
+	<table border="1">
+	    <tr>
+	        <th>ISBN</th>
+	        <th>제목</th>
+	        <th>저자</th>
+	        <th>상태</th>
+	    </tr>
+	    <tr th:each="book : ${books}">
+	        <td th:text="${book.isbn}"></td>
+	        <td th:text="${book.title}"></td>
+	        <td th:text="${book.author}"></td>
+	        <td th:text="${book.available ? '대여가능' : '대여중'}"></td>
+	    </tr>
+	</table>
+	
+	<br>
+	<a href="/book/add">➕ 도서 등록</a> |
+	<a href="/book/rent">📦 대여/반납</a>
+</body>
+</html>

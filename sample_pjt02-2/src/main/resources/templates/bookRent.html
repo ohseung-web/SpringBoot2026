@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>📦 도서 대여 / 반납</h2>
+
+<form action="/book/rent" method="post">
+    ISBN: <input type="text" name="isbn">
+    <button type="submit">대여</button>
+</form>
+
+<br>
+
+<form action="/book/return" method="post">
+    ISBN: <input type="text" name="isbn">
+    <button type="submit">반납</button>
+</form>
+
+<p th:text="${message}"></p>
+
+<a href="/book/list">📋 도서 목록</a>
+</body>
+</html>
