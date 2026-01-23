@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<tr th:each="post, stat : ${postList}">
+    <td th:text="${stat.index}"></td>
+    <td th:text="${post.title}"></td>
+</tr>
+
+</div>
+</body>
+</html>

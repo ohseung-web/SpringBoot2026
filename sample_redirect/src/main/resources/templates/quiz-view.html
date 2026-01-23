@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>비밀번호 입력 (힌트:1234)</h2>
+	<!-- re.addFlashAttribute("msg","비밀번호 틀림, 다시 시도해") -->
+	<p th:if="${msg}" th:text="${msg}" style="color: red;"></p>
+	
+	<form th:action="@{/check-quiz}" method="post">
+		<input type="text" name="pass" placheolder="비밀번호"/>
+		<button type="submit">확인</button>
+	</form>
+	
+	
+</body>
+</html>
