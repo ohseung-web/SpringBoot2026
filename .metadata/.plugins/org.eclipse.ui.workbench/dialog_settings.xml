@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="NewWizardAction">
-		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.wst.html.ui.internal.wizard.NewHTMLWizard"/>
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.wst.jsdt.ui.NewJSWizard"/>
 		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
-			<item value="org.eclipse.wst.web.ui"/>
+			<item value="org.eclipse.wst.jsdt.ui.java"/>
 		</list>
 		<section name="NewWizard.dialogBounds">
 		</section>
@@ -27,11 +27,12 @@
 		<item key="WizardZipFileResourceExportPage1.STORE_CREATE_STRUCTURE_ID" value="true"/>
 		<item key="WizardZipFileResourceExportPage1.STORE_COMPRESS_CONTENTS_ID" value="true"/>
 		<list key="WizardZipFileResourceExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="C:\Users\Administrator\Desktop\com.zip"/>
 			<item value="C:\Users\Administrator\Desktop\a.zip"/>
 		</list>
 		<section name="ZipFileExportWizard.dialogBounds">
-			<item key="DIALOG_X_ORIGIN" value="250"/>
-			<item key="DIALOG_Y_ORIGIN" value="-38"/>
+			<item key="DIALOG_X_ORIGIN" value="157"/>
+			<item key="DIALOG_Y_ORIGIN" value="7"/>
 			<item key="DIALOG_WIDTH" value="622"/>
 			<item key="DIALOG_HEIGHT" value="617"/>
 			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
