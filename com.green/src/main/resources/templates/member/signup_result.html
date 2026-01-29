@@ -18,7 +18,12 @@
 		       회원 가입 결과
 		    </div>
 			<div class="content">
-			  
+			  <div th:if="${result > 0}" align="center">
+			     회원가입 성공!
+			  </div>
+			  <div th:if="${result <= 0}" align="center">
+			     회원가입 실패!
+			  </div>
 			</div>
 		</div>
 	</section>

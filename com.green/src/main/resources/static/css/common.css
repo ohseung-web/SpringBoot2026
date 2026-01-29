@@ -12,14 +12,14 @@ li {
 	list-style: none;
 	}
 
-input {
+/* input {
 	width: 300px;
 	padding: 10px;
 	border-radius: 5px;
 	border: 1px solid #ccc;
 	outline: none;
 	margin: 3px;
-	}
+	} */
 
 input[type='button'],
 input[type='reset'] {

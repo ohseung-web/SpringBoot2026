@@ -123,7 +123,7 @@ public class BoardDAO {
 				ResultSet rs = pstmt.executeQuery();
 				
 				if(rs.next()) {
-					bdto.setNum(rs.getInt("num"));
+				bdto.setNum(rs.getInt("num"));
 			    	bdto.setWriter(rs.getString("writer"));
 			    	bdto.setSubject(rs.getString("subject"));
 			    	bdto.setWriterPw(rs.getString("writerPw"));
@@ -164,9 +164,80 @@ public class BoardDAO {
 		return result;
 	}
 	
+	//----------------- 2026년 01월 29일 시작부분------------------
+	// 게시글 작성시 비밀번호 입력하였기때문에 => 삭제시에도 비밀번호와 번호가 일치하는지 체크
+	public int deleteBoard(int num, String writerPw) {
+		System.out.println("2)BoardDAO deleteBoard()메소드 호출 ");
+		
+		int result = 0;
+		// 삭제 : delete from 테이블명 where 조건;
+		String sql ="DELETE FROM board WHERE num=? AND writerPw=?";
+		try(Connection conn=datasource.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql);
+				){
+			//실행문
+			// ? 대응
+			pstmt.setInt(1, num);
+			pstmt.setString(2, writerPw);
+			result = pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
-	
-	
+	// 내용또는 제목으로 게시글 검색하는 메소드
+	// 검색메소드 반드시, searchType, searchKeyword매개변수 필요
+	public List<BoardDTO> getSearchBoard(String searchType, String searchKeyword){
+		
+		//List<>인스턴스
+		List<BoardDTO> blist = new ArrayList<>();
+		
+		//sql
+		String sql="";
+		if("subject".equals(searchType)) {
+			// subject의 검색 부분
+			// 입력하는 문자를 포함하는 검색 명령어
+			// select 필드명 from 테이블명 where 검색필드명 like %키워드%;
+			sql ="SELECT * FROM board WHERE subject LIKE ? ORDER BY num DESC";
+		}else {
+			// content의 검색 부분
+			sql ="SELECT * FROM board WHERE content LIKE ? ORDER BY num DESC";
+		}
+		
+		try(Connection conn = datasource.getConnection();
+				PreparedStatement pstmt = conn.prepareStatement(sql)){
+			
+			// ? 대응
+			// select => 제목, input => 감사
+			// select * from board where subject like %감사%;
+			pstmt.setString(1, "%" + searchKeyword + "%");
+			// select문 ResultSet 객체에 담는다
+			ResultSet rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				// BoardDTO 인스턴스화 한다.
+				BoardDTO bdto = new BoardDTO();
+				
+				bdto.setNum(rs.getInt("num"));
+			    	bdto.setWriter(rs.getString("writer"));
+			    	bdto.setSubject(rs.getString("subject"));
+			    	bdto.setWriterPw(rs.getString("writerPw"));
+			    	bdto.setReg_date(rs.getString("reg_date"));
+			    	bdto.setReadcount(rs.getInt("readcount"));
+			    	bdto.setContent(rs.getString("content"));
+			    	
+			    	// List<> add()추가하기
+			    	blist.add(bdto);
+			}
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		return blist;
+	}
 	
 	
 	
