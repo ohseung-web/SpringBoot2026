@@ -57,8 +57,17 @@
         ORDER BY num DESC
      </select>
      
+     <!-- 전체 게시글 수 -->
+     <!-- public int getAllcount(); -->
+     <select id="getAllcount" resultType="int">
+     	SELECT COUNT(*) FROM board 
+     </select>
      
-     
-    
+     <!-- public List<BoardDTO> getPagelist  -->
+     <!-- Select * from board limit startRow, pageSize -->
+     <select id="getPagelist" resultType="BoardDTO">
+     	SELECT * FROM board ORDER BY num DESC 
+     	LIMIT #{startRow}, #{pageSize}
+     </select>
     
 </mapper>
