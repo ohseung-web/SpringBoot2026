@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sample_ot.mapper.ReplyBoardMapper">
+	<!-- 테이블 추가 -->
+	<!-- 
+		ref=0; //글그룹 = 쿼리 실행시 가장 큰 ref값을 가저온 후 더하기 1을 한다.
+		re_step=1; //새로운 글은 부모글이므로 1
+		re_level=1; 
+	 -->
+	<insert id="insertReplyBoard" parameterType="rDTO">
+		INSERT INTO replyBoard(writer,email,subject,password,ref,re_step,re_level,content)
+		VALUES(#{writer},#{email},#{subject},#{password},
+		(SELECT IFNULL(MAX(b.ref) + 1, 1) FROM replyBoard b), -- 별칭 'b'를 주어 별도 쿼리로 인식시킴
+	    1,1,#{content})
+	</insert>
+	
+	<!-- public List<ReplyBoardDTO> getAllReplyBoard(); -->
+	<select id="getAllReplyBoard" resultType="rDTO">
+		SELECT * FROM replyBoard
+	</select>
+</mapper>
