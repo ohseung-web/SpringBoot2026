@@ -81,9 +81,20 @@ public class BoardController {
 		
 		
 		// 3. 전체 게시글의 개수인 totalCnt 메소드 가져오기
-		int totalCnt = boardservice.getAllcount();
+		int totalCnt ;
+		
+		// totalCnt를 조건에 만족하는 값으로 저장되도록 지정하는 부분
+		if(searchType != null && !searchKeyword.trim().isEmpty()) {
+			// 검색이 성공을 한경우 검색한 결과에 해당하는 개수 반환
+			totalCnt = boardservice.getSearchCount(searchType, searchKeyword);
+		}else {
+			// 검색을 하지 않은 경우 전체 게시글의 개수 반환
+			totalCnt = boardservice.getAllcount();
+		}
 		
 		// 4. PageHandler클래스 접근하기위해 인스턴스화 한다.
+		// 검색한 결과 totalCnt = 1
+		//                                  1       1       5
 		PageHandler ph = new PageHandler(totalCnt, page, pageSize);
 		
 		List<BoardDTO> listboard;  
@@ -92,7 +103,9 @@ public class BoardController {
 		if(searchType != null && !searchKeyword.trim().isEmpty() ) {
 			//boarDAO에 검색메소드 getSearchBoard()메소드 호출한다.
 			// service에서 serchBoard()메소드 호출한다.
-			listboard = boardservice.searchBoard(searchType, searchKeyword);
+			// 검색이 성공하였을 경우 검색된 리스트를 반환하는 메소드
+			listboard = boardservice.getSearchPageList(searchType, 
+					searchKeyword, ph.getStartRow(), pageSize);
 		}else {
 			// 검색하지 않고 전체보기 list나오기
 			// boardservice.allBoard() => 사용 못하는 이유는
@@ -101,6 +114,7 @@ public class BoardController {
 			// public List<BoardDTO> getPagelist(int startRow, int pageSize)
 			// SELECT * FROM board ORDER BY num DESC 
 	     	// LIMIT #{startRow}, #{pageSize}=> 몇개까지 => 초기값 defaultValue="5"
+			// 검색하지 않은 게시글 전체 대한 리스트
 			listboard = boardservice.getPagelist(ph.getStartRow(), pageSize);
 		}
 		
@@ -109,6 +123,11 @@ public class BoardController {
 		// PageHandler 클래스 모두 model객체에 담아서 html로 보내야 함
 		// 그래야 UI 화면에 페이징 그릴 수 있다.
 		model.addAttribute("ph",ph);// PageHandler 클래스를 인스턴스한 참조변수이다.
+		
+		// 검색하는 타입과, 항목을 UI 넘겨주지 않으면 , 오류 뜬다.
+		// 반드시 searchType, searchKeyword를 model담아서 boardList.html로 넘겨준다.
+		model.addAttribute("searchType",searchType);
+		model.addAttribute("searchKeyword",searchKeyword);
 		
 		String nextPage = "board/boardList";
 		return nextPage;
@@ -181,6 +200,56 @@ public class BoardController {
 			return "redirect:/board/boardInfo?num="+num;
 		}
 	}
+	
+	// 로그인된 나의 게시글 목록을 검색하는 핸들러 
+	
+	@GetMapping("/board/mypage")
+	public String myBoardList(Model model, HttpSession session
+			,@RequestParam(value="page",defaultValue="1") int page) {
+		
+		// 세션 키 이름을 loginmember로 가져오기
+		// 세션 키 값 가져오는 메소드 : getAttribute("loginmember")
+		// id = "kkk" 해당하는 행 전체 
+		// MemberDTO로 다운캐스팅 한다.
+		// 현재 loginId => MemberDTO의 멤버변수 모두 저장됨을 주의 하자
+		MemberDTO loginId = (MemberDTO)session.getAttribute("loginmember");
+		
+		// 로그인 실패또는 로그인이 안된 상태이면 => member/login로 이동
+		if(loginId == null) {
+			System.out.println("로그인 정보가 없으니 로그인 페이질 이동합니다.");
+			return "redierct:/member/login";
+		}
+		
+		int pageSize = 5;
+		// 로그인된 내 게시글의 개수 조회
+		int totalCnt = boardservice.getMyBoardCount(loginId.getId());
+		
+		// PageHandler 클래스 인스턴스화 한다.
+		PageHandler ph = new PageHandler(totalCnt, page, pageSize);
+		
+		// 로그인된 내 게시글의 목록을 가져오기
+		List<BoardDTO> mylist = boardservice.getMyBoardList(loginId.getId(), 
+				ph.getStartRow(), pageSize);
+		
+		model.addAttribute("list",mylist);
+		model.addAttribute("ph",ph);
+		
+		return "/board/mypage";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }
