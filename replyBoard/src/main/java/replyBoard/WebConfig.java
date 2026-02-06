@@ -1,4 +1,4 @@
-package replyBoard.config;
+package replyBoard;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -11,6 +11,6 @@ public class WebConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
         registry.addResourceHandler("/upload/**")
-                .addResourceLocations("file:/d:/upload/");
+                .addResourceLocations("file:///c:/upload/");
     }
 }
