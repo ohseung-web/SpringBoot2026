@@ -54,12 +54,12 @@
         <tr height="40">
            <td align="center" colspan="4">
               <input type="button" value="답글쓰기"
-		       th:onclick="|location.href='@{/board/reply(
-		           num=${onelist.num},
-		           ref=${onelist.ref},
-		           re_step=${onelist.re_step},
-		           re_level=${onelist.re_level}
-		       )}'|">
+		            th:onclick="|location.href='@{/board/reply(
+		            num=${onelist.num},
+		            ref=${onelist.ref},
+		            re_step=${onelist.re_step},
+		            re_level=${onelist.re_level}
+		           )}'|">
               <input type="button" value="수정하기" th:onclick="|location.href='@{/board/list}'|">
               <input type="button" value="삭제하기" th:onclick="|location.href='@{/board/list}'|">
               <input type="button" th:onclick="|location.href='@{/board/list}'|" value="목록보기">

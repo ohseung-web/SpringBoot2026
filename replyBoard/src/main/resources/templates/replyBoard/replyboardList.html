@@ -82,12 +82,6 @@
 </head>
 <body>
     
-<!-- <c:if test="${msg != null && msg eq '0'}">
-  <script type="text/javascript">
-     alert("비밀번호를 확인하세요");
-  </script>  
-</c:if> -->
-
 <div class="container">
 	<h2>전체 게시글 목록</h2>
 	<table width="700" border="1">
@@ -106,22 +100,20 @@
 						<tr th:each="li, stat:${rlist}">
 			            <td th:text="${stat.size - stat.index}"></td>
 			            <td style="text-align:left;">
-			                <!-- 썸네일 이미지 -->
-						    <img th:if="${li.upload1 != null}"
-						         th:src="@{/upload/{img}(img=${li.upload1})}"
-						         width="50"
-						         height="50"
-						         style="object-fit:cover; border:1px solid #ccc;">
-						    <!-- 답글인 경우 -->
-						    <span th:if="${li.re_level > 1}"
-						          th:style="'padding-left:' + (${li.re_level - 1} * 20) + 'px'">
-						        ↳[re]
-						    </span>
+			                   <!-- 썸네일 이미지 -->
+			                  <img th:if="${li.upload1 != null}"  
+			                       th:src="@{/upload/{img}(img=${li.upload1})}"
+			                       width="50" height="50"
+			                       style="border:1px solid #ccc;">
+						        <!-- 답글인 경우 -->
+						        <span th:if="${li.re_level > 1}"
+						             th:style="'padding-left:' + (${li.re_level - 1} * 20) + 'px'">
+						            ↳[re]
+						        </span>
 						
-						    <a th:href="@{/board/detail(num=${li.num})}"
-						       th:text="${li.subject}"></a>
-						</td>
-				
+						        <a th:href="@{/board/detail(num=${li.num})}"
+						           th:text="${li.subject}"></a>
+						      </td>
 			            <td th:text="${li.writer}"></td>
 			            <td th:text="${#dates.format(li.reg_date, 'yyyy-MM-dd HH:mm')}"></td>
 			            <td th:text="${li.readcount}"></td>
