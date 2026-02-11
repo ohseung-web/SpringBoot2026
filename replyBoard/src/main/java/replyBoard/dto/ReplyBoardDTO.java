@@ -2,6 +2,7 @@ package replyBoard.dto;
 
 import java.util.Date;
 
+
 public class ReplyBoardDTO {
 	private int num;//글번호
 	private String writer; // 작성자
