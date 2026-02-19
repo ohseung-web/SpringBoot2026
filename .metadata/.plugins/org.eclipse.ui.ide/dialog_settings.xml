@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<section name="ChooseWorkspaceDialogSettings">
-		<item key="DIALOG_X_ORIGIN" value="210"/>
-		<item key="DIALOG_Y_ORIGIN" value="62"/>
+		<item key="DIALOG_X_ORIGIN" value="316"/>
+		<item key="DIALOG_Y_ORIGIN" value="104"/>
 	</section>
 	<section name="ExternalProjectImportWizard">
 		<item key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED" value="true"/>
@@ -21,10 +21,10 @@
 		</list>
 		<section name="ExternalProjectImportWizard.dialogBounds">
 			<item key="DIALOG_X_ORIGIN" value="513"/>
-			<item key="DIALOG_Y_ORIGIN" value="100"/>
-			<item key="DIALOG_WIDTH" value="624"/>
-			<item key="DIALOG_HEIGHT" value="722"/>
-			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
+			<item key="DIALOG_Y_ORIGIN" value="7"/>
+			<item key="DIALOG_WIDTH" value="525"/>
+			<item key="DIALOG_HEIGHT" value="617"/>
+			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|5|0|맑은 고딕"/>
 		</section>
 	</section>
 	<section name="NewWizardAction">
@@ -39,5 +39,9 @@
 			<item key="DIALOG_HEIGHT" value="500"/>
 			<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 		</section>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
 	</section>
 </section>

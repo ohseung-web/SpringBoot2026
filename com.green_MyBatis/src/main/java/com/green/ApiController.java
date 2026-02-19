@@ -115,5 +115,85 @@ public class ApiController {
     	  }
     	  
     }
+    
+    // 게시팡 검색
+ // 게시판 검색 + 페이징 API
+//    @GetMapping("/board/list")
+//    public Map<String, Object> boardList(
+//            @RequestParam(value="searchType", required=false) String searchType,
+//            @RequestParam(value="searchKeyword", required=false) String searchKeyword,
+//            @RequestParam(value="page", defaultValue="1") int page,
+//            @RequestParam(value="pageSize", defaultValue="5") int pageSize
+//    ) {
+//
+//        int totalCnt;
+//
+//        if(searchType != null && searchKeyword != null && !searchKeyword.trim().isEmpty()) {
+//            totalCnt = boardservice.getSearchCount(searchType, searchKeyword);
+//        } else {
+//            totalCnt = boardservice.getAllcount();
+//        }
+//
+//        PageHandler ph = new PageHandler(totalCnt, page, pageSize);
+//
+//        List<BoardDTO> listboard;
+//
+//        if(searchType != null && searchKeyword != null && !searchKeyword.trim().isEmpty()) {
+//            listboard = boardservice.getSearchPageList(
+//                    searchType,
+//                    searchKeyword,
+//                    ph.getStartRow(),
+//                    pageSize);
+//        } else {
+//            listboard = boardservice.getPagelist(
+//                    ph.getStartRow(),
+//                    pageSize);
+//        }
+//
+//        // React로 보낼 JSON 데이터
+//        Map<String, Object> result = new HashMap<>();
+//        result.put("list", listboard);
+//        result.put("ph", ph);
+//
+//        return result;
+//    }
+
+   // @GetMapping("/board/list")
+//    public BoardResponseDTO boardList(
+//            @RequestParam(required=false) String searchType,
+//            @RequestParam(required=false) String searchKeyword,
+//            @RequestParam(defaultValue="1") int page,
+//            @RequestParam(defaultValue="5") int pageSize
+//    ) {
+//
+//        // 1️⃣ 검색 여부 먼저 판단
+//        boolean isSearch = 
+//                searchKeyword != null && !searchKeyword.trim().isEmpty();
+//
+//        // 2️⃣ 전체 개수 구하기
+//        int totalCnt = isSearch
+//                ? boardservice.getSearchCount(searchType, searchKeyword)
+//                : boardservice.getAllcount();
+//
+//        PageHandler ph = new PageHandler(totalCnt, page, pageSize);
+//
+//        // 3️⃣ 리스트 가져오기
+//        List<BoardDTO> list = isSearch
+//                ? boardservice.getSearchPageList(
+//                        searchType,
+//                        searchKeyword,
+//                        ph.getStartRow(),
+//                        pageSize)
+//                : boardservice.getPagelist(
+//                        ph.getStartRow(),
+//                        pageSize);
+//
+//        // 4️⃣ 응답 객체로 반환
+//        return new BoardResponseDTO(list, ph);
+//    }
+
+ 
+    
+    
 	 
 }
