@@ -27,6 +27,7 @@ export default function Header(){
                       <>
                         <span>관리자</span>
                         <Link to="/member/list">[회원목록]</Link>
+                        <Link to="/cars/insert">[상품등록]</Link>
                       </>
                       :
                       <span>{user}님 환영</span>

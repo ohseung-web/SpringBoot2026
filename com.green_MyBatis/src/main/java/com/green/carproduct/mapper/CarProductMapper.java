@@ -15,4 +15,8 @@ public interface CarProductMapper {
 	// getAllCarProduct()메소드는 => carproduct-mappe.xml 
 	// 연결하여 select SQL 쿼리문을 작성한다.
 	public List<CarProductDTO> getAllCarProduct();
+	
+	// insert문 => List<CarProductDTO> 사용 못함
+	public void insertCarProduct(CarProductDTO dto);
+	
 }
