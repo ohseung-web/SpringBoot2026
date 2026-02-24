@@ -10,6 +10,7 @@
 	<typeAlias alias="MemberDTO" type="com.green.member.MemberDTO" />
 	<typeAlias alias="BoardDTO" type="com.green.board.BoardDTO" />
 	<typeAlias alias="carDTO" type="com.green.carproduct.CarProductDTO" />
+	<typeAlias alias="tDTO" type="com.green.carproduct.TestImgDTO" />
 	
 </typeAliases>
 <!-- <mappers>

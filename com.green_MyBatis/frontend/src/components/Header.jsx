@@ -39,6 +39,7 @@ export default function Header(){
                 </>
             )}
                  <Link to='/board/list'>게시판</Link>
+                 <Link to='/test/insert'>테스트상품등록</Link>
          </div>        
         </header>
     )

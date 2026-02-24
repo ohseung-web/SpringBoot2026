@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.green.carproduct.CarProductDTO;
+import com.green.carproduct.TestImgDTO;
 
 @Mapper
 public interface CarProductMapper {
@@ -19,4 +20,6 @@ public interface CarProductMapper {
 	// insert문 => List<CarProductDTO> 사용 못함
 	public void insertCarProduct(CarProductDTO dto);
 	
+	// testIMg insert 메소드
+	public void insertTest(TestImgDTO tdto);
 }

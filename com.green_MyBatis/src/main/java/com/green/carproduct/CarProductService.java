@@ -25,4 +25,8 @@ public class CarProductService {
 	public void insertCarProduct(CarProductDTO dto) {
 		carProductmapper.insertCarProduct(dto);
 	}
+	
+	public void insetTest(TestImgDTO tdto) {
+		carProductmapper.insertTest(tdto);
+	}
 }

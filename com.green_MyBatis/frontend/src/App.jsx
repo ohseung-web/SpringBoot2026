@@ -13,6 +13,7 @@ import Login from './pages/Login'
 import MyInfo from './pages/MyInfo'
 import Modify from './pages/Modify'
 import Product from './pages/Product'
+import ProductTest from './pages/ProductTest'
 
 function App() {
 
@@ -35,6 +36,7 @@ function App() {
                     <Route path='/member/myinfo' element={<MyInfo />} />
                     <Route path='/member/modify' element={<Modify />} />
                     <Route path='/cars/insert' element={<Product />} />
+                    <Route path='/test/insert' element={<ProductTest />} />
                 </Routes>
               </main>
               <Footer />

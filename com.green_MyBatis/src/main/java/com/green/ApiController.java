@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.List;
 import java.util.UUID;
 
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,11 +17,19 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.green.carproduct.CarProductDTO;
 import com.green.carproduct.CarProductService;
+import com.green.carproduct.TestImgDTO;
 import com.green.member.MemberDTO;
 import com.green.member.MemberService;
 
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpSession;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
+@MultipartConfig(
+	    maxFileSize = 10 * 1024 * 1024,        // 파일 1개 최대 10MB
+	    maxRequestSize = 100 * 1024 * 1024,    // 전체 요청 최대 100MB
+	    fileSizeThreshold = 1024 * 1024        // 1MB 초과시 디스크에 저장
+	)
 
 //@RestController는 @Controller + @ResponseBody를 합친
 //어노테이션이다. => 컨트롤러 역활 + 데이터를 JSON으로 응답하여 사용하겠다.
@@ -241,7 +248,77 @@ public class ApiController {
     	     
     }
     
+    //------- 테스트 이미지 삽입
+    // Tomcat 11 (Spring Boot 4.x에 포함)에서 multipart 요청의 파트(필드) 개수 기본 제한이 20개로 설정되어 있습니다. 
+    // TestImgDTO의 필드가 20개를 넘어서 발생하는 문제입니다.
     
+//    @PostMapping("/test/insert")
+//    public int insertTest(
+//    		@ModelAttribute TestImgDTO tdto,
+//    		@RequestParam("testFile") MultipartFile testFile
+//    		) throws Exception {
+//    	     System.out.println("자동차 등록 요청");
+//    	     
+//    	     //저장경로
+//    	     String savePath = "C:/Spring_Boot/com.green_MyBatis/frontend/public/img/car/";
+//    	     
+//    	     // 저장할 경로가 존재하지 않으면 자동으로 생성하는 코드
+//    	     File dir = new File(savePath);
+//    	     if(!dir.exists()) {
+//    	    	    dir.mkdirs();
+//    	     }
+//    	     
+//    	     String fileName="";
+//    	     if(!testFile.isEmpty()) {
+//	    	    	 //사용자가 올린 파일명을 가져온다.
+//	    	    	 String originalName = testFile.getOriginalFilename();
+//	    	    	 
+//	    	    	 // 파일명 중복해서 입력되지 않도록 UUID클래스 이용
+//	    	    	 // UUID가 36글자까지 랜덤하게 출력한다.
+//	    	    	 fileName = UUID.randomUUID().toString().substring(0,4)+"_"+originalName;
+//	    	    	 // 파일전송
+//	    	    	 File saveFile = new File(savePath + fileName);
+//	    	    	 testFile.transferTo(saveFile);
+//    	     }
+//    	     
+//    	     // DTO중 setImg()에 파일명만 세팅한다.
+//    	     tdto.setA_img(fileName);
+//    	
+//    	     // DB에 저장
+//    	     carProductservice.insetTest(tdto);
+//    	     
+//    	     return 1;
+//    	     
+//    }
     
+    @PostMapping("/test/insert")
+    public int insertTest(
+            @RequestParam("testData") String testData,
+            @RequestParam("testFile") MultipartFile testFile
+            ) throws Exception {
+        System.out.println("테스트 이미지 등록 요청");
+        
+        // JSON 문자열 → TestImgDTO 변환
+        ObjectMapper mapper = new ObjectMapper();
+        TestImgDTO tdto = mapper.readValue(testData, TestImgDTO.class);
+        
+        // 저장경로
+        String savePath = "C:/Spring_Boot/com.green_MyBatis/frontend/public/img/car/";
+        File dir = new File(savePath);
+        if (!dir.exists()) dir.mkdirs();
+        
+        String fileName = "";
+        if (!testFile.isEmpty()) {
+            String originalName = testFile.getOriginalFilename();
+            fileName = UUID.randomUUID().toString().substring(0, 4) + "_" + originalName;
+            File saveFile = new File(savePath + fileName);
+            testFile.transferTo(saveFile);
+        }
+        
+        tdto.setA_img(fileName);
+        carProductservice.insetTest(tdto);
+        
+        return 1;
+    }
 	 
 }
