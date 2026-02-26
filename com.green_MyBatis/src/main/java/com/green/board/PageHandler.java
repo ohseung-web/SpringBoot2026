@@ -1,5 +1,8 @@
 package com.green.board;
 
+import lombok.Data;
+
+@Data
 // 페이징을 하기위한 계산식을 가지고 있는 클래스
 public class PageHandler {
 
@@ -88,95 +91,5 @@ public class PageHandler {
 		
 	}
 
-	
-	public int getTotalCnt() {
-		return totalCnt;
-	}
-
-	public void setTotalCnt(int totalCnt) {
-		this.totalCnt = totalCnt;
-	}
-
-	public int getPageNum() {
-		return pageNum;
-	}
-
-	public void setPageNum(int pageNum) {
-		this.pageNum = pageNum;
-	}
-
-	public int getPageSize() {
-		return pageSize;
-	}
-
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
-
-	public int getPageBlock() {
-		return pageBlock;
-	}
-
-	public void setPageBlock(int pageBlock) {
-		this.pageBlock = pageBlock;
-	}
-
-	public int getStartRow() {
-		return startRow;
-	}
-
-	public void setStartRow(int startRow) {
-		this.startRow = startRow;
-	}
-
-	public int getEndRow() {
-		return endRow;
-	}
-
-	public void setEndRow(int endRow) {
-		this.endRow = endRow;
-	}
-
-	public int getTotalPage() {
-		return totalPage;
-	}
-
-	public void setTotalPage(int totalPage) {
-		this.totalPage = totalPage;
-	}
-
-	public int getStartPage() {
-		return startPage;
-	}
-
-	public void setStartPage(int startPage) {
-		this.startPage = startPage;
-	}
-
-	public int getEndPage() {
-		return endPage;
-	}
-
-	public void setEndPage(int endPage) {
-		this.endPage = endPage;
-	}
-
-	public boolean isPrev() {
-		return prev;
-	}
-
-	public void setPrev(boolean prev) {
-		this.prev = prev;
-	}
-
-	public boolean isNext() {
-		return next;
-	}
-
-	public void setNext(boolean next) {
-		this.next = next;
-	}
-	
-	
 	
 }

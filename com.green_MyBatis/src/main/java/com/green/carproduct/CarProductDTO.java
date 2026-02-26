@@ -1,5 +1,9 @@
 package com.green.carproduct;
 
+import lombok.Data;
+
+// lombok을 이용해 DTO의 getter, setter을 자동으로 진행한다.
+@Data
 public class CarProductDTO {
 	private int no;  // -- 자동차 식별자
 	private String carName; // -- 자동차 이름
@@ -8,43 +12,6 @@ public class CarProductDTO {
 	private String img; //자동차 이미지
 	private String info; // 자동차 설명
 	
-	
-	public int getNo() {
-		return no;
-	}
-	public void setNo(int no) {
-		this.no = no;
-	}
-	public String getCarName() {
-		return carName;
-	}
-	public void setCarName(String carName) {
-		this.carName = carName;
-	}
-	public int getPrice() {
-		return price;
-	}
-	public void setPrice(int price) {
-		this.price = price;
-	}
-	public String getCompany() {
-		return company;
-	}
-	public void setCompany(String company) {
-		this.company = company;
-	}
-	public String getImg() {
-		return img;
-	}
-	public void setImg(String img) {
-		this.img = img;
-	}
-	public String getInfo() {
-		return info;
-	}
-	public void setInfo(String info) {
-		this.info = info;
-	}
 	
 	
 }
